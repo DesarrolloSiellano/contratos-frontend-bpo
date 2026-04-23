@@ -1,0 +1,136 @@
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 1rem;
+
+  .title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1e293b;
+    white-space: nowrap;
+  }
+
+  .nav-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f8fafc;
+    padding: 0.4rem;
+    border-radius: 1.5rem;
+    border: 1px solid #f1f5f9;
+
+    .btn-icon {
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 50%;
+      width: 2.25rem;
+      height: 2.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      color: #64748b;
+
+      &:hover {
+        background: #f1f5f9;
+        color: #2563eb;
+        border-color: #cbd5e1;
+      }
+    }
+
+    .btn-today {
+      background: #eff6ff; /* Light blue tint from image */
+      border: 1px solid #dbeafe;
+      padding: 0.4rem 1.25rem;
+      border-radius: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: #2563eb; /* Blue text from image */
+      transition: all 0.2s;
+
+      &:hover {
+        background: #dbeafe;
+        color: #1d4ed8;
+      }
+    }
+  }
+
+  .view-switcher {
+    display: flex;
+    gap: 0.25rem;
+    background: #f8fafc;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 1px solid #f1f5f9;
+
+    button {
+      border: none;
+      background: none;
+      padding: 0.45rem 1.25rem;
+      border-radius: 0.75rem;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      color: #64748b;
+      transition: all 0.2s;
+
+      &.active {
+        background: #3b82f6; /* Solid blue from image */
+        color: white;
+        box-shadow: 0 4px 10px rgba(59, 130, 246, 0.4);
+      }
+
+      &:hover:not(.active) {
+        background: white;
+        color: #1e293b;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      }
+    }
+  }
+
+  // --- Responsive Styles ---
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+
+    .title {
+      font-size: 1.25rem;
+      width: 100%;
+      text-align: center;
+      margin-bottom: -0.25rem;
+    }
+
+    .nav-group {
+      order: 2;
+    }
+
+    .view-switcher {
+      order: 3;
+      width: 100%;
+      justify-content: center;
+      overflow-x: auto;
+      
+      button {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.75rem;
+        flex: 1;
+        min-width: fit-content;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav-group {
+      width: 100%;
+      justify-content: space-between;
+      order: 2;
+      
+      .btn-today { flex-grow: 1; margin: 0 0.5rem; }
+    }
+  }
+}

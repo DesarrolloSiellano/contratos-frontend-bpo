@@ -1,0 +1,37 @@
+.calendar-event {
+  width: 100%;
+  height: 100%;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .header {
+    .title {
+      font-weight: 700;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      display: block;
+    }
+  }
+
+  .body {
+    .time {
+      font-size: 0.75rem;
+      opacity: 0.9;
+    }
+  }
+}

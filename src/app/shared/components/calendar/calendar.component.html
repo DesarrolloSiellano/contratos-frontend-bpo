@@ -1,0 +1,16 @@
+<div class="calendar-container">
+  <aside class="calendar-sidebar">
+    <app-sidebar-calendar [categories]="categories()" (createEventClick)="eventCreate.emit($any($event))">
+    </app-sidebar-calendar>
+  </aside>
+
+  <main class="calendar-main">
+    <header class="calendar-header">
+      <app-header-calendar></app-header-calendar>
+    </header>
+
+    <section class="calendar-body">
+      <app-grid-calendar (eventClick)="eventClick.emit($any($event))"></app-grid-calendar>
+    </section>
+  </main>
+</div>

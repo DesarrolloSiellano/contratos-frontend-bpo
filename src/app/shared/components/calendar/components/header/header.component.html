@@ -1,0 +1,25 @@
+<div class="header-inner">
+  <div class="left-section">
+    <h1 class="title">{{ displayTitle() }}</h1>
+  </div>
+
+  <div class="center-section">
+    <div class="nav-group">
+      <button class="btn-icon" (click)="prev()"><i class="pi pi-chevron-left"></i></button>
+      <button class="btn-today" (click)="today()">{{ translations().today }}</button>
+      <button class="btn-icon" (click)="next()"><i class="pi pi-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <div class="right-section">
+    <div class="view-switcher">
+      @for (view of views(); track view.value) {
+        <button 
+          [class.active]="viewType() === view.value"
+          (click)="setView(view.value)">
+          {{ view.label }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

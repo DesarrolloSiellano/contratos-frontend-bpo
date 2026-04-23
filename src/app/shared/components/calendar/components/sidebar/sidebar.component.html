@@ -1,0 +1,52 @@
+<div class="sidebar-inner">
+  <header class="mini-cal-header">
+    <span class="month-year">{{ monthYear }}</span>
+    <div class="nav-controls">
+      <button (click)="$event.stopPropagation(); calendarService.prev()"><i class="pi pi-chevron-up"></i></button>
+      <button (click)="$event.stopPropagation(); calendarService.next()"><i class="pi pi-chevron-down"></i></button>
+    </div>
+  </header>
+
+  <div class="mini-cal">
+    <div class="days-header">
+      @for (day of daysOfWeek; track $index) {
+        <span>{{ day }}</span>
+      }
+    </div>
+    <div class="days-grid">
+      @for (d of daysInMonth; track $index) {
+        <button 
+          [class.not-current]="!d.currentMonth" 
+          [class.selected]="d.selected"
+          (click)="d.currentMonth && onDayClick(d.day)">
+          {{ d.day }}
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="action-section">
+    <button class="btn-create" (click)="createEventClick.emit(currentDate())">
+      <i class="pi pi-plus"></i>
+      {{ translations().createEvent }}
+    </button>
+  </div>
+
+  <section class="filters-section">
+    <h3>{{ translations().categories }}</h3>
+    <ul class="category-list">
+      @for (cat of categories(); track cat.id) {
+        <li class="category-item">
+          <label>
+            <input type="checkbox" [checked]="isCategorySelected(cat.id)" (change)="toggleCategory(cat.id)">
+            <span class="indicator" [style.background-color]="cat.color">
+              @if (cat.icon) { <i [class]="cat.icon"></i> }
+            </span>
+            <span class="name">{{ cat.name }}</span>
+            <span class="count">{{ calendarService.categoryCounts()[cat.id] || 0 }}</span>
+          </label>
+        </li>
+      }
+    </ul>
+  </section>
+</div>

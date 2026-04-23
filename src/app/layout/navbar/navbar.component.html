@@ -1,0 +1,67 @@
+<p-toast></p-toast>
+
+<header class="navbar">
+  <div class="nabvar-title-wrapper">
+    <div class="btn btn-link btn-sm" (click)="toggleSidebar()">
+      <i class="pi" [ngClass]="isSidebarOpen ? 'pi-bars' : 'pi-times'"></i>
+    </div>
+    <!--   <span class="navbar-title"> {{ title }}</span> -->
+  </div>
+  <div class="navbar-right">
+
+
+
+    <!--    <div #notifications class="navbar-icon-option" (click)="toggleCustomDropdown(notifications)">
+      <i class="pi pi-flag"></i>
+    </div>
+
+    <div #task class="navbar-icon-option" (click)="toggleCustomDropdown(task)">
+      <i class="pi pi-bell"></i>
+    </div> -->
+
+    <div #config class="navbar-icon-option" (click)="toggleDropdown(config)">
+      <i class="pi pi-cog"></i>
+    </div>
+
+    <!--     <div #user class="navbar-icon-option" (click)="toggleCustomDropdown(user)">
+      <a class="">MAICOL TASCON</a>
+    </div> -->
+
+    <div class="navbar-icon-option" (click)="logout()">
+      <i class="pi pi-sign-out"></i>
+    </div>
+
+  </div>
+
+</header>
+<app-icon-dropdown #dropdown [options]="cogOptions"></app-icon-dropdown>
+
+<app-custom-dropdown-panel #dropdownCustomPanel>
+  <div slot="header">
+    <span class="panel-title">{{panelMessage}}</span>
+  </div>
+
+  <div slot="body">
+
+  </div>
+
+  <div slot="footer">
+    <span class="text-footer">{{panelFooterMessage}} </span>
+  </div>
+</app-custom-dropdown-panel>
+
+<p-dialog [(visible)]="isDisplayChangePassword" header="Cambiar Contraseña" [draggable]="false" [resizable]="true"
+  [closable]="false" [modal]="true" [baseZIndex]="10000">
+
+  <app-form-template [form]="changePasswordForm" [colClass]="'col-12'"></app-form-template>
+
+  <ng-template #footer>
+    <p-button label="Cancelar" [text]="true" severity="secondary" (click)="closeDialog()" />
+    <p-button label="Guardar" [outlined]="true" severity="primary" [disabled]="formComponent?.formGroup?.invalid"
+      (click)="save()" />
+  </ng-template>
+
+</p-dialog>
+
+<p-confirmDialog header="Confirmación" icon="pi pi-exclamation-triangle" header="Confirmación"
+  icon="pi pi-info-circle"></p-confirmDialog>

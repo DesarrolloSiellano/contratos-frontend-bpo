@@ -1,0 +1,18 @@
+<div class="dashboard-root">
+  <app-sidebar id="layoutSidenav"></app-sidebar>
+  <div class="dashboard-main">
+    <app-navbar></app-navbar>
+    <section class="dashboard-content">
+      @if(loading$ | async){
+      <div class="loading-overlay">
+        <div class="loading-container">
+          <p-progressspinner class="loading-spinner"></p-progressspinner>
+          <p class="loading-message">Cargando...</p>
+        </div>
+      </div>
+      }
+      <router-outlet></router-outlet>
+    </section>
+    <app-footer></app-footer>
+  </div>
+</div>

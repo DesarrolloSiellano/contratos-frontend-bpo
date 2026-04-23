@@ -1,0 +1,60 @@
+@if (code === '404') {
+<div class="error-page">
+  <h1 class="glitch-soft" data-text="404">
+    404
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+  </h1>
+  <p class="error-title">Página no encontrada</p>
+  <p class="error-desc">Parece que encontraste un fallo en la matriz...</p>
+  <a routerLink="/" class="back-link">&larr; Volver al panel</a>
+</div>
+}
+@else if (code === '401') {
+<div class="error-page">
+  <h1 class="glitch-soft" data-text="401">
+    401
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+  </h1>
+  <p class="error-title">No autorizado</p>
+  <p class="error-desc">No tienes permiso para acceder a este recurso.</p>
+  <a routerLink="/" class="back-link">&larr; Volver al panel</a>
+</div>
+}
+@else if (code === '500') {
+<div class="error-page">
+  <h1 class="glitch-soft" data-text="500">
+    500
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+  </h1>
+  <p class="error-title">Error interno del servidor</p>
+  <p class="error-desc">hubo un error en el servidor.</p>
+  <a routerLink="/" class="back-link">&larr; Volver al panel</a>
+</div>
+}
+@else {
+<div class="error-page">
+  <h1 class="glitch-soft" data-text="Error">
+    Error
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+    <span class="glitch-line"></span>
+  </h1>
+  <p class="error-title">Error inesperado</p>
+  <p class="error-desc">Algo salió mal. Por favor, inténtalo de nuevo más tarde.</p>
+  <a routerLink="/" class="back-link">&larr; Volver al panel</a>
+</div>
+}

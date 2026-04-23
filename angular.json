@@ -22,6 +22,9 @@
           "options": {
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
+            "polyfills": [
+              "zone.js"
+            ],
             "inlineStyleLanguage": "scss",
             "assets": [
               {
@@ -31,7 +34,12 @@
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/base"
+              ]
+            }
           },
           "configurations": {
             "production": {

@@ -1,0 +1,190 @@
+// importa los iconos de PrimeIcons
+
+.sidebar {
+  width: 16rem;
+  background: rgb(47, 60, 84); /* Cambia el color de fondo a verde */
+  box-shadow: 0 24px 30px 14px rgba(72, 60, 138, 0.247);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: sticky; // para quedar fijo al hacer scroll
+  top: 0;
+  height: 100vh; /* <-- Crucial: sidebar siempre mide la ventana */
+  flex-shrink: 0;
+  z-index: 200;
+  transition: width 0.5s ease;
+  overflow: auto;
+
+  .sidebar-logo {
+    display: flex;
+    flex-direction: column; /* Cambia a column si deseas logo arriba y texto debajo; usa row si es horizontal */
+    align-items: center;
+    justify-content: center;
+   // gap: 8px; /* Ajusta el espacio entre logo e texto según necesidad */
+    //padding: 5px 0;
+    background-color: var(--bg-surface-contrast);
+    width: 100%;
+    box-sizing: border-box;
+    height: auto;
+    //border-bottom: 4px solid var(--bg-surface-contrast);
+
+    .sidebar-logo-img {
+      padding: 10px;
+      margin-top: 1rem;
+      width: 90px; /* Un poco más grande si quieres más presencia */
+      height: 70px;
+      object-fit: contain;
+      background-color: var(--backgraund-surface);
+      border-radius: 8px; /* Sutil redondeo si tu logo lo permite */
+    }
+
+    .sidebar-logo-text {
+      font-weight: 700;
+      font-size: 1.2rem; /* Ligeramente más grande para destacar */
+      color: var(--backgraund-surface);
+      text-align: center;
+      user-select: none;
+      letter-spacing: 0px; /* Separación de letras para efecto más actual */
+    }
+  }
+
+  nav {
+    //margin-top: 2rem;
+    width: 100%;
+    padding:  15px;
+
+    .sidebar-menu {
+      list-style: none;
+      text-decoration: none;
+      padding: 10px;
+      margin: 0 0 0 0;
+      color: var(--color-white);
+      width: 100%;
+      border-radius: 10px;
+      transition: height 0.5s ease;
+      font-size: 14px;
+
+     .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        //padding: 6px 4px;
+
+
+        i.pi {
+          font-size: 16px;
+          color: rgba(255, 255, 255, 0.55);
+          display: flex;
+          align-items: center;
+        }
+
+        a {
+          color: rgba(255, 255, 255, 0.55);
+          text-decoration: none;
+          display: flex;
+          align-items: center;
+          gap: 6px;
+          padding: 8px;
+
+          &:hover {
+            color: white;
+          }
+
+          &.active {
+            color: white;
+            border-left: 2px solid #5e7af4;
+          }
+        }
+
+        .icon-change {
+          font-size: 14px;
+          min-width: 16px; /* evita que salte */
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          justify-content: center;
+          color: rgba(255, 255, 255, 0.55);
+        }
+      }
+
+      .submenu {
+        max-height: 600px;
+        list-style: none;
+        padding-left: 12px;
+        margin: 0;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 1s ease, max-height 0.3s ease;
+
+        li {
+          margin-bottom: 5px;
+        }
+
+        a {
+          display: flex;
+          color: rgba(255, 255, 255, 0.4);
+          transition: background 0.2s;
+          text-decoration: none;
+          border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+          padding: 8px;
+          margin-left: 2px;
+          border-left: 2px solid transparent;
+
+
+          &.active{
+            color: var(--color-white);
+            border-left: 2px solid #5e7af4;
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            background-color: var(--bg-surface-contrast);
+            transition: background 0.5s ease-in-out;
+            i.pi {
+              color: var(--color-white);
+            }
+          }
+
+          &:hover {
+            border-left: 2px solid var(--color-white);
+            border-bottom-right-radius: 8px;
+            border-top-right-radius: 8px;
+            background-color: var(--bg-surface-contrast);
+            transition: background 0.5s ease-in-out;
+          }
+
+          i.pi {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            padding-right: 8px;
+          }
+        }
+      }
+
+      .submenu.hidden-submenu {
+        opacity: 0;
+        transition: opacity 1s ease, max-height 0.3s ease;
+        max-height: 0;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 16rem;
+    z-index: 300;
+    box-shadow: none;
+    transition: width 0.5s ease;
+  }
+}
+
+

@@ -1,0 +1,82 @@
+
+.perfil-container {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+}
+
+.photo-container {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  overflow: hidden; // ✅ Evita desbordes
+  
+  .photo {
+    display: block;
+    border-radius: 50%;
+    width: 120px; // Añade tamaño fijo
+    height: 120px;
+    object-fit: cover;
+    padding: 10px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); // Suave
+  }
+
+  // ✅ HOVER PRINCIPAL
+  &:hover {
+    .photo {
+      transform: scale(1.05); // Zoom imagen
+      filter: brightness(1.05) contrast(1.05); // Más viva
+    }
+    
+    .icon-overlay {
+     // background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: scale(1.2) rotate(5deg); // Gira y crece
+    
+      
+      i {
+        animation: pulse 0.6s ease-in-out;
+      }
+    }
+  }
+
+  // ✅ Icono overlay mejorado
+  .icon-overlay {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 900;
+    color: #667eea;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 3px solid #667eea74;
+    
+    &:hover {
+      background: #667eea;
+      color: white;
+    }
+  }
+}
+
+// ✅ Animación para el icono
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+// ✅ Responsive
+@media (max-width: 768px) {
+  .photo-container {
+    &:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+  }
+}

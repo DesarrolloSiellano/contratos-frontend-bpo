@@ -1,0 +1,84 @@
+<div class="calendar-grid" [class]="viewType()">
+  @if (viewType() === 'month') {
+    <!-- Month View Layout -->
+    <div class="month-grid">
+      <!-- Weekday Names Header -->
+      <div class="month-header">
+        @for (day of monthDayNames(); track day) {
+          <div class="weekday-label">{{ day }}</div>
+        }
+      </div>
+
+      <!-- Days Grid -->
+      <div class="month-body">
+        @for (date of visibleDays(); track date) {
+          <div class="month-day" 
+               [class.today]="isToday(date)" 
+               [class.other-month]="isOtherMonth(date)">
+            <div class="day-number">{{ date.getDate() }}</div>
+            <div class="day-events">
+              @for (event of getEventsForDay(date); track event._id) {
+                <div class="month-event-pill" 
+                     [style.border-left-color]="event.categoryColor"
+                     (click)="$event.stopPropagation(); eventClick.emit(event)">
+                  <span class="event-time">{{ event.startTime }}</span>
+                  <span class="event-title">{{ event.title }}</span>
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  } @else {
+    <!-- Time-based Grid Layout (Day, Week, Weekdays) -->
+    <!-- Time column -->
+    <div class="time-col">
+      <div class="header-corner"></div>
+      @for (hour of hours; track hour) {
+        <div class="hour-label">{{ formatHour(hour) }}</div>
+      }
+    </div>
+
+    <!-- Main grid content -->
+    <div class="grid-container" #gridContainer>
+      <!-- Sticky Header -->
+      <div class="header-row sticky">
+        @for (date of visibleDays(); track date) {
+          <div class="day-header" [class.today]="isToday(date)">
+            <span class="day-name">{{ getDayName(date) }}</span>
+            <span class="day-number">{{ date.getDate() }}</span>
+          </div>
+        }
+      </div>
+
+      <div class="slots-container">
+        <!-- Background grid lines -->
+        <div class="bg-grid">
+          @for (hour of hours; track hour) {
+            <div class="hour-row">
+              @for (date of visibleDays(); track date) {
+                <div class="grid-cell"></div>
+              }
+            </div>
+          }
+        </div>
+
+        <!-- Days Grid for events -->
+        <div class="days-columns">
+          @for (date of visibleDays(); track date) {
+            <div class="day-column">
+              @for (event of getEventsForDay(date); track event._id) {
+                <app-event-calendar 
+                  [event]="event" 
+                  [style]="getEventStyles(event)"
+                  (click)="eventClick.emit(event)">
+                </app-event-calendar>
+              }
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+</div>

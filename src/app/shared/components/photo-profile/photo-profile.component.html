@@ -1,0 +1,53 @@
+<div class="flex justify-center photo-profile-wrapper" 
+     
+     [class]="size">
+    <div class="perfil-container">
+        <span class="photo-container" (click)="setPhotoProfile()">
+            <img [src]="imageUrl" 
+                 [alt]="name || 'Foto de perfil'"
+                 class="photo" 
+                 style="width: 200px; height: 200px;"/>
+            <i class="pi pi-camera icon-overlay"></i>
+        </span>
+        
+        @if (showName) {
+            <h2 class="text-2xl font-semibold">{{name}}</h2>
+        }
+        
+        @if (showText) {
+            <p class="text-sm text-gray-600">Actualiza la foto de perfil aqui!</p>
+        }
+    </div>
+
+    <!-- Input file siempre presente -->
+    <input #fileInput
+           type="file"
+           accept="image/*"
+           (change)="onFileSelected($event)"
+           style="display: none;" />
+</div>
+
+
+<p-dialog [(visible)]="cropperVisible" [modal]="true" [style]="{ width: '310px' }"  [closable]="false" [dismissableMask]="true">
+   <image-cropper
+        [imageChangedEvent]="imageChangedEvent"
+        [maintainAspectRatio]="true"
+        [aspectRatio]="4 / 4"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded($event)"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()">
+    </image-cropper>
+     <div class="flex justify-center mt-md">
+      <p-button severity="primary" outlined icon="pi pi-save"
+        class="mr-md"
+        pTooltip="Descargar PNG"
+        (click)="saveImg()"></p-button>
+
+      <p-button severity="danger" outlined icon="pi pi-times"
+        class="mr-md"
+        pTooltip="Descargar PDF"
+        (click)="closeModal()"></p-button>
+    </div>
+</p-dialog>

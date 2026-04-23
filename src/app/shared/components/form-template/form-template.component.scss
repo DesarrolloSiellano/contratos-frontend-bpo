@@ -1,0 +1,39 @@
+.p-dialog{
+  width: 50vm;
+}
+
+::ng-deep .p-password-input{
+  width: 100% !important;
+}
+::ng-deep .p-datepicker-input{
+  width: 100% !important;
+}
+::ng-deep .p-autocomplete-input{
+  width: 100% !important;
+}
+
+
+.message-validation{
+  padding: auto;
+  span {
+    color: var(--color-danger);
+    font-size: 10px;
+  }
+}
+
+input {
+  width: 100% !important;
+}
+
+.label-checkbox{
+  font-size: 14px;
+  font-weight: bold;
+  padding-left: 5px;
+}
+
+
+/* @media (max-width: 592px) {
+  .p-dialog {
+    width: 80vm;
+  }
+} */

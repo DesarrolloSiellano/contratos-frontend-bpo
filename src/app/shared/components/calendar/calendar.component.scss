@@ -1,0 +1,62 @@
+.calendar-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f9fa;
+  font-family: 'Inter', sans-serif;
+  color: #1a1a1a;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.calendar-sidebar {
+  width: 320px;
+  background-color: white;
+  border-right: 1px solid #edf2f7;
+  padding: 2rem;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.calendar-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  min-width: 0; /* Important: Allows flex child to shrink/scroll */
+}
+
+.calendar-header {
+  min-height: 80px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #edf2f7;
+  padding: 1rem 1.5rem; /* Flexible padding */
+  flex-shrink: 0;
+}
+
+.calendar-body {
+  flex-grow: 1;
+  overflow: auto; /* Central scroll for both X and Y */
+  position: relative;
+  background-color: white;
+  max-width: 100%; /* Force constraint to parent width */
+}
+
+@media (max-width: 1024px) {
+  .calendar-sidebar {
+    position: fixed;
+    left: -100%;
+    z-index: 100;
+    transition: left 0.3s ease;
+    height: 100%;
+    box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .calendar-sidebar.open {
+    left: 0;
+  }
+}
