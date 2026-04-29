@@ -9,7 +9,6 @@ import { Response } from '../../../shared/interface/response.interface';
 })
 export class ContractorService extends BaseService<Contractor, Response<Contractor>> {
 
-
     constructor(http: HttpClient) {
         super(http, 'contractor');
     }
