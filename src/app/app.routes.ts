@@ -26,6 +26,28 @@ export const routes: Routes = [
                         (m) => m.DashboardComponent
                     ),
             },
+            {
+                path: 'contractor',
+                loadComponent: () =>
+                    import('./pages/contractor/contractor.component').then(
+                        (m) => m.ContractorComponent
+                    ),
+            },
+
+            {
+                path: 'contracts',
+                loadComponent: () =>
+                    import('./pages/contracts/contracts.component').then(
+                        (m) => m.ContractsComponent
+                    ),
+            },
+            {
+                path: 'task',
+                loadComponent: () =>
+                    import('./pages/task/task.component').then(
+                        (m) => m.TaskComponent
+                    ),
+            },
         ]
     }
 ];
