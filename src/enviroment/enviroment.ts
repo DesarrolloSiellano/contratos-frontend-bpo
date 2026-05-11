@@ -5,7 +5,7 @@ export const ENVIROMENT = {
   authUrl: 'https://auth.bponet.com.co/login', // uri
   //authUrl: 'http://localhost:4200/login', // uri
   //url: 'https://app.bponet.com.co/campaign/api',
-  url: '',
+  url: 'http://localhost:3015/api',
   title: 'Módulo contratos',
   subtitle: 'Administración de contratos',
   storageKey: 'contractsModule',
