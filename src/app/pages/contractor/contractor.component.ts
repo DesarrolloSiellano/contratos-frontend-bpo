@@ -7,11 +7,14 @@ import { ExcelExportService } from '../../shared/services/excel-export.service';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 import { ListTemplateComponent } from '../../shared/components/list-template/list-template.component';
 import { FormTemplateComponent } from '../../shared/components/form-template/form-template.component';
+import { CONTRACTOR_FORM } from '../../shared/forms/contractor.form';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
   selector: 'app-contracts',
   standalone: true,
-  imports: [ListTemplateComponent,FormTemplateComponent],
+  imports: [ListTemplateComponent, FormTemplateComponent, ButtonModule, DialogModule],
   templateUrl: './contractor.component.html',
   styleUrl: './contractor.component.scss',
 })
@@ -26,7 +29,8 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
     { field: 'direccion', header: 'Direccion' },
   ];
 
-  showModal = signal<boolean>(false);
+  formContractor = CONTRACTOR_FORM;
+  override isFormVisible = true;
 
   constructor(
     protected override service: ContractorService,
@@ -38,9 +42,13 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
     super(service, cdr, dataLoader, excelexport, confirmService);
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
-  ngAfterViewInit(): void { 
+  ngAfterViewInit(): void {
     this.cdr.detectChanges();
-   }
+  }
+
+  openDialogPrueba() {
+    this.isDisplayForm = true;
+  }
 }
