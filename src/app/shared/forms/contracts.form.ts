@@ -1,20 +1,5 @@
 export const CONTRACTS_FORM = [
   {
-    name: 'idSupervisor',
-    label: 'Id De Supervisor',
-    type: 'text',
-    show: true,
-    required: true,
-    value: '',
-    maxLength: '50',
-    minLength: '2',
-    weight: 1,
-    disabled: false,
-    placeholder: '',
-    pKeyFilter: '',
-    pattern: '',
-  },
-  {
     name: 'documentoContratista',
     label: 'Documento De Contratista',
     type: 'text',
@@ -30,8 +15,8 @@ export const CONTRACTS_FORM = [
     pattern: '',
   },
   {
-    name: 'ano',
-    label: 'Ano',
+    name: 'anio',
+    label: 'Año',
     type: 'text',
     show: true,
     required: true,
@@ -257,7 +242,7 @@ export const CONTRACTS_FORM = [
   {
     name: 'completado',
     label: 'Completado',
-    type: 'text',
+    type: 'checkbox',
     show: true,
     required: true,
     value: '',
@@ -272,7 +257,7 @@ export const CONTRACTS_FORM = [
   {
     name: 'vigente',
     label: 'Vigente',
-    type: 'text',
+    type: 'checkbox',
     show: true,
     required: true,
     value: '',
@@ -287,7 +272,7 @@ export const CONTRACTS_FORM = [
   {
     name: 'prorrogrado',
     label: 'Prorrogrado',
-    type: 'text',
+    type: 'checkbox',
     show: true,
     required: true,
     value: '',
@@ -302,7 +287,7 @@ export const CONTRACTS_FORM = [
   {
     name: 'detenido',
     label: 'Detenido',
-    type: 'text',
+    type: 'checkbox',
     show: true,
     required: true,
     value: '',
@@ -317,7 +302,7 @@ export const CONTRACTS_FORM = [
   {
     name: 'estado',
     label: 'Estado',
-    type: 'text',
+    type: 'select',
     show: true,
     required: true,
     value: '',
@@ -328,6 +313,16 @@ export const CONTRACTS_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
+    options: [
+      {
+        label: 'Activo',
+        value: 'activo',
+      },
+      {
+        label: 'Inactivo',
+        value: 'inactivo',
+      },
+    ],
   },
   {
     name: 'porcentajeTotal',
@@ -404,7 +399,7 @@ export const CONTRACTS_FORM = [
     pKeyFilter: '',
     pattern: '',
   },
-  {
+  /*  {
     name: 'fechaCreacion',
     label: 'Fecha Creacion',
     type: 'text',
@@ -433,8 +428,8 @@ export const CONTRACTS_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
-  },
-  {
+  }, */
+  /*   {
     name: 'contratista',
     label: 'Contratista',
     type: 'text',
@@ -538,5 +533,5 @@ export const CONTRACTS_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
-  },
+  }, */
 ];
