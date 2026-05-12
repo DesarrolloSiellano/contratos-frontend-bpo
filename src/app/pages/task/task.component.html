@@ -1,2 +1,23 @@
 <p>Task works!</p> 
 
+<p-button label="Open Dialog" [text]="true" severity="secondary" (click)="openDialogPrueba()" />
+
+
+
+<p-dialog [(visible)]="isDisplayForm" [style]="{width: '70vw'}" [header]="titleForm" [draggable]="false"
+  [resizable]="false" [closable]="false" [modal]="true" [baseZIndex]="10000">
+  
+    @if (isFormVisible) {
+
+     <app-form-template [width]="'70rem'" [title]="titleForm" [isVisible]="isFormVisible" [isEdit]="isEditForm"
+    [initialData]="initialData" [form]="formTask">
+      </app-form-template>
+
+  }
+
+  <ng-template #footer>
+    <p-button label="Cancel" [text]="true" severity="secondary" (click)="closeDialog()" />
+    <p-button label="Save" [outlined]="true" severity="primary" (click)="save()" />
+  </ng-template>
+</p-dialog>
+

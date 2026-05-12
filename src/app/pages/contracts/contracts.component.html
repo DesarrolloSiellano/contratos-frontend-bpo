@@ -1,25 +1,51 @@
-<p>contracts works!</p> 
+<p>contracts works!</p>
 
 <app-list-template
-[title]="'Lista de Contratos'"
-[showTitle]="true"
-[toAdd]="toAdd"
-[options]="true"
-[cols]="cols"
-[data]="data"
-[lazy]="true"
-[totalRecords]="totalRecords"
-[loading]="loading"
-[filtersGlobal]="filtersGlobal"
-(loadLazy)="load($any($event))"
-  (dateQuery)="queryDate($event)"
-  (update)="update($event)"
-  (delete)="delete($event)"
-  (exportPage)="exportAsXLSX()"
-  (reload)="rechargeTable()"
-  (onRowSelectionChange)="onSelectionChange($any($event))"> 
->
-<app-list-template>
+    [title]="'Lista de Contratos'"
+    [showTitle]="true"
+    [toAdd]="toAdd"
+    [options]="true"
+    [cols]="cols"
+    [data]="data"
+    [lazy]="true"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+    [filtersGlobal]="filtersGlobal"
+    (loadLazy)="load($any($event))"
+    (dateQuery)="queryDate($event)"
+    (update)="update($event)"
+    (delete)="delete($event)"
+    (exportPage)="exportAsXLSX()"
+    (reload)="rechargeTable()"
+    (onRowSelectionChange)="onSelectionChange($any($event))">
+    >
+</app-list-template>
+
+<app-list-template [title]="'Lista de Contratistas'" [showTitle]="true" [toAdd]="toAdd" [options]="true" [cols]="cols"
+  [data]="data" [lazy]="true" [totalRecords]="totalRecords" [loading]="false" [filtersGlobal]="filtersGlobal"
+  (loadLazy)="load($any($event))" (dateQuery)="queryDate($event)" (update)="update($event)" (delete)="delete($event)"
+  (exportPage)="exportAsXLSX()" (reload)="rechargeTable()" (onRowSelectionChange)="onSelectionChange($any($event))">
+  >
+</app-list-template>
+
+<p-button label="Open Dialog" [text]="true" severity="secondary" (click)="openDialogPrueba()" />
 
 
-    
+
+<p-dialog [(visible)]="isDisplayForm" [style]="{width: '70vw'}" [header]="titleForm" [draggable]="false"
+  [resizable]="false" [closable]="false" [modal]="true" [baseZIndex]="10000">
+  
+    @if (isFormVisible) {
+
+     <app-form-template [width]="'70rem'" [title]="titleForm" [isVisible]="isFormVisible" [isEdit]="isEditForm"
+    [initialData]="initialData" [form]="formContract">
+      </app-form-template>
+
+  }
+
+  <ng-template #footer>
+    <p-button label="Cancel" [text]="true" severity="secondary" (click)="closeDialog()" />
+    <p-button label="Save" [outlined]="true" severity="primary" (click)="save()" />
+  </ng-template>
+</p-dialog>
+

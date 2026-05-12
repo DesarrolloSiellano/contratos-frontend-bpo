@@ -148,30 +148,15 @@ export const CONTRACTOR_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
-    options: [
+    options: 
+   [
       {
-        label: 'Cedula de Ciudadania',
-        value: 'CC',
+        label: 'Activo',
+        value: 'activo',
       },
       {
-        label: 'Permiso especial',
-        value: 'PE',
-      },
-      {
-        label: 'Pasaporte',
-        value: 'PAS',
-      },
-      {
-        label: 'Cedula de Extrangeria',
-        value: 'CE',
-      },
-      {
-        label: 'Tarjeta de Identidad',
-        value: 'TI',
-      },
-      {
-        label: 'NIT',
-        value: 'NIT',
+        label: 'Inactivo',
+        value: 'inactivo',
       },
     ],
   },
@@ -250,7 +235,7 @@ export const CONTRACTOR_FORM = [
     pKeyFilter: '',
     pattern: '',
   },
-  /* {
+  {
     name: 'listasChequeo',
     label: 'Listas de Chequeo',
     type: 'checkbox',
@@ -324,5 +309,5 @@ export const CONTRACTOR_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
-  }, */
+  },
 ];

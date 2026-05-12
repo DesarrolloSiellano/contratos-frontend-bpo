@@ -37,7 +37,7 @@ export const CONTRACTS_FORM = [
     required: true,
     value: '',
     maxLength: '100',
-    minLength: '1',
+    minLength: '1',       
     weight: 4,
     disabled: false,
     placeholder: '',

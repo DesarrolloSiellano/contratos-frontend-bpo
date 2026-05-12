@@ -13,9 +13,9 @@ export class TaskService extends BaseService<Task, Response<Task>> {
 
         constructor(http: HttpClient) {
             super(http, 'task');
-         
         }
 
     }
+    
 
     

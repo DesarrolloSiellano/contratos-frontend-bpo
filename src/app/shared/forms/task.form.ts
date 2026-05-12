@@ -126,7 +126,7 @@ export const TASK_FORM = [
     weight: 8,
     disabled: false,
     placeholder: '',
-    pKeyFilter: '',
+    pKeyFilter: '', 
     pattern: '',
   },
   {
