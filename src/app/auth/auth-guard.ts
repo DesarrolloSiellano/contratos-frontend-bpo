@@ -6,7 +6,7 @@ import {
   Router,
 } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { ENVIROMENT } from '../../enviroment/enviroment';
+import { Environment } from '../../environment/environment'; 
 import { ProcessAuthData } from './service/process-auth-data';
 
 @Injectable({
@@ -32,12 +32,12 @@ export class AuthGuard implements CanActivate {
     const token = localStorage.getItem('access_token');
 
     if (!token) {
-      this.redirectToLogin(ENVIROMENT.redirectUri + state.url);
+      this.redirectToLogin(Environment.redirectUri + state.url);
       return false;
     }
 
     if (!this.isTokenValid(token)) {
-      this.redirectToLogin(ENVIROMENT.redirectUri + state.url);
+      this.redirectToLogin(Environment.redirectUri + state.url);
       return false;
     }
 
@@ -46,7 +46,7 @@ export class AuthGuard implements CanActivate {
 
   private redirectToLogin(redirectUrl: string) {
     setTimeout(() => {
-      const loginUrl = `${ENVIROMENT.authUrl}?redirect_uri=${encodeURIComponent(
+      const loginUrl = `${Environment.authUrl}?redirect_uri=${encodeURIComponent(
         redirectUrl
       )}`;
       window.location.href = loginUrl;

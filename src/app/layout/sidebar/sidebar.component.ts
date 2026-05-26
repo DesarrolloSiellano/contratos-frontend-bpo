@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { RoutesModuleConfig } from '../../shared/interface/module-config.interface';
 import { GetConfigAppService } from '../../shared/services/get-config.service';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { Environment } from '../../../environment/environment';    
+
 
 @Component({
   selector: 'app-sidebar',
@@ -11,24 +12,23 @@ import { ENVIROMENT } from '../../../enviroment/enviroment';
   imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
-  providers: [GetConfigAppService],
 })
 export class SidebarComponent implements OnInit {
   routes: RoutesModuleConfig[] = [];
-  isChangeIcon: boolean = false;
-
-  title = ENVIROMENT.title;
+  title = Environment.title;
 
   constructor(private getConfigApp: GetConfigAppService) {}
 
   ngOnInit(): void {
-    this.routes = this.getConfigApp.getRoutes().map((route) => ({
+    this.routes = this.getConfigApp.getRoutes().map(route => ({
       ...route,
-      open: true, // agrega propiedad de visibilidad
+      open: true,
     }));
   }
 
-  toggleSubmenu(route: any) {
+
+  toggleSubmenu(route: RoutesModuleConfig): void {
     route.open = !route.open;
   }
 }
+

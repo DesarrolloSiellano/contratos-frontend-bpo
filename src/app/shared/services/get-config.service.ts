@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ModuleConfig, RoutesModuleConfig } from '../interface/module-config.interface';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { ENVIROMENT } from '../../../environment/environment';
 
 
 @Injectable({

@@ -3,46 +3,56 @@
     <img class="sidebar-logo-img" src="images/logo.png" alt="Logo" />
     <p class="sidebar-logo-text">{{ title }}</p>
   </div>
+
   <nav>
     <ul class="sidebar-menu">
       @for (route of routes; track route) {
-      <li>
-        <!-- icono y contenido principal -->
-        @if(route.isActive) {
-        <div class="item" (click)="toggleSubmenu(route)">
-          <a [routerLink]="route.initPath" [routerLinkActive]="'active'"
-            [routerLinkActiveOptions]="{ exact: true }"
-            [title]="route.name">
-            @if(route.icon){
-            <i [ngClass]="'pi pi-' + (route.icon)"></i>
-            }
-            <span class="route-name"> {{ route.name }}</span>
-          </a>
-
-          @if (route.children?.length !== 0) {
-          <i class="pi icon-change"
-            [ngClass]="route.open ? 'pi-angle-down' : 'pi-angle-up'"></i>
-          }
-        </div>
-        }
-        @if (route.children?.length !== 0 && route.open) {
-        <ul class="submenu">
-          @for (child of route.children; track child) {
-          @if(child.isActive) {
+        @if (route.isActive) {
           <li>
-            <a [routerLink]="route.path + '/' + child.path"
-              [routerLinkActive]="'active'" [title]="child.name">
-              <i [ngClass]="'pi pi-' + (child.icon || 'file')"></i>
-              <span class="route-name"> {{ child.name }}</span>
-            </a>
-          </li>
-          }
-          }
-        </ul>
-        }
-      </li>
-      }
+            <div class="item">
+              <a
+                [routerLink]="route.initPath"
+                [routerLinkActive]="'active'"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [title]="route.name"
+              >
+                @if (route.icon) {
+                  <i [ngClass]="'pi pi-' + route.icon"></i>
+                }
+                <span class="route-name">{{ route.name }}</span>
+              </a>
 
+              @if (route.children?.length !== 0) {
+                <i
+                  class="pi icon-change"
+                  [ngClass]="route.open ? 'pi-angle-down' : 'pi-angle-up'"
+                  (click)="toggleSubmenu(route); $event.stopPropagation()"
+                ></i>
+              }
+            </div>
+
+            @if (route.children?.length !== 0 && route.open) {
+              <ul class="submenu">
+                @for (child of route.children; track child) {
+                  @if (child.isActive) {
+                    <li>
+                      <a
+                        [routerLink]="route.path + '/' + child.path"
+                        [routerLinkActive]="'active'"
+                        [title]="child.name"
+                      >
+                        <i [ngClass]="'pi pi-' + (child.icon || 'file')"></i>
+                        <span class="route-name">{{ child.name }}</span>
+                      </a>
+                    </li>
+                  }
+                }
+              </ul>
+            }
+          </li>
+        }
+      }
     </ul>
   </nav>
 </div>
+

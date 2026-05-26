@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Response } from '../../shared/interface/response.interface';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { ENVIROMENT } from '../../../environment/environment';
 
 export interface LoginRequest {
   email: string;

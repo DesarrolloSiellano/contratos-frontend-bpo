@@ -20,7 +20,7 @@ import { CHANGE_PASSWORD_FORM } from '../../shared/forms/change-password.form';
 import { FormTemplateComponent } from '../../shared/components/form-template/form-template.component';
 import { ButtonModule } from 'primeng/button';
 import { AuthService, ChangePassword } from '../../auth/service/auth';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { ENVIROMENT } from '../../../environment/environment';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { Toast, ToastModule } from 'primeng/toast';
 import { CustomDropdownComponent } from '../../shared/components/custom-dropdown/custom-dropdown.component';

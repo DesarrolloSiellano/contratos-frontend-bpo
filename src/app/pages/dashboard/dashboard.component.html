@@ -1,1 +1,62 @@
-<p>dashboard works!</p>
+<main class="dashboard-page">
+  <section class="dashboard-hero">
+    <div>
+      <h1>Dashboard</h1>
+      <p>Resumen general de contratos y contratistas.</p>
+    </div>
+  </section>
+
+  <section class="dashboard-grid">
+    <article class="dashboard-card">
+      <h2>Contratos activos</h2>
+      <strong>{{ stats.activeContracts }}</strong>
+      <p>Contratos actualmente vigentes</p>
+    </article>
+
+    <article class="dashboard-card">
+      <h2>Contratistas</h2>
+      <strong>{{ stats.contractors }}</strong>
+      <p>Personas o empresas registradas</p>
+    </article>
+
+    <article class="dashboard-card">
+      <h2>Pagos pendientes</h2>
+      <strong>{{ stats.pendingPayments }}</strong>
+      <p>Pagos por revisar</p>
+    </article>
+
+    <article class="dashboard-card">
+      <h2>Por vencer</h2>
+      <strong>{{ stats.expiringContracts }}</strong>
+      <p>Contratos próximos a vencer</p>
+    </article>
+  </section>
+
+  <section class="dashboard-table">
+    <h2>Contratos recientes</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Contratista</th>
+            <th>Estado</th>
+            <th>Fecha</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let contract of contracts">
+            <td>{{ contract.code }}</td>
+            <td>{{ contract.contractor }}</td>
+            <td>{{ contract.status }}</td>
+            <td>{{ contract.date }}</td>
+            <td>{{ contract.amount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+

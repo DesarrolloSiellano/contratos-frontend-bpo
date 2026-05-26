@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../../shared/interface/jwt-payload.interface';
 import { Router } from '@angular/router';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { ENVIROMENT } from '../../../environment/environment';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 
 @Injectable({
