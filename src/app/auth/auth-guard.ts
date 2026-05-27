@@ -6,7 +6,7 @@ import {
   Router,
 } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { Environment } from '../../environment/environment'; 
+import { Environment } from '../../environment/environment';  
 import { ProcessAuthData } from './service/process-auth-data';
 
 @Injectable({

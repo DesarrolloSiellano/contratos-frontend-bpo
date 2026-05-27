@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { ModuleConfig, RoutesModuleConfig } from '../interface/module-config.interface';
-import { ENVIROMENT } from '../../../environment/environment';
+import { Environment } from '../../../environment/environment';
 
 
 @Injectable({
   providedIn: 'root',
 })
 export class GetConfigAppService {
-  private readonly storageKey = ENVIROMENT.storageKey;
+  private readonly storageKey = Environment.storageKey;
 
   constructor() {}
 

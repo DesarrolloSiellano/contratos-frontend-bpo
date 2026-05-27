@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Response } from '../../shared/interface/response.interface';
-import { ENVIROMENT } from '../../../environment/environment';
+import { Environment } from '../../../environment/environment';  
 
 export interface LoginRequest {
   email: string;
@@ -24,7 +24,7 @@ export class AuthService {
 
   changePassword(changePassword: ChangePassword): Observable<Response<any>> {
     return this.http.post<Response<any>>(
-      `${ENVIROMENT.url}/auth/change-password`,
+      `${Environment.url}/auth/change-password`,
       changePassword,
       {
         headers: {
@@ -37,7 +37,7 @@ export class AuthService {
 
   recoveryPassword(email: string): Observable<Response<any>> {
     return this.http.post<Response<any>>(
-      `${ENVIROMENT.url}/auth/recovery-password`,
+      `${Environment.url}/auth/recovery-password`,
       { email }
     );
   }

@@ -20,7 +20,7 @@ import { CHANGE_PASSWORD_FORM } from '../../shared/forms/change-password.form';
 import { FormTemplateComponent } from '../../shared/components/form-template/form-template.component';
 import { ButtonModule } from 'primeng/button';
 import { AuthService, ChangePassword } from '../../auth/service/auth';
-import { ENVIROMENT } from '../../../environment/environment';
+import { Environment } from '../../../environment/environment';
 import { ConfirmDialog } from 'primeng/confirmdialog';
 import { Toast, ToastModule } from 'primeng/toast';
 import { CustomDropdownComponent } from '../../shared/components/custom-dropdown/custom-dropdown.component';
@@ -62,7 +62,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   moduleConfig: ModuleConfig = {} as ModuleConfig;
   username: string = '';
   private scrollListener!: () => void;
-  title = ENVIROMENT.title;
+  title = Environment.title;
   panelMessage = 'Tu tienes 10 notificaciones';
   panelFooterMessage = 'Ver todas';
 
