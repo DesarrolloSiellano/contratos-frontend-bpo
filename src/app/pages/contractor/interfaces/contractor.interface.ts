@@ -18,6 +18,7 @@ export interface Contractor {
     ciudadExpedicion?: string;
     estado?: string;
     rol?: string;
+    company: string;
     fechaNacimiento?: string;
     contratoVigente: boolean;
     contratos?: Contract[];

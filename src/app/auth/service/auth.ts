@@ -20,9 +20,7 @@ export interface ChangePassword {
   providedIn: 'root',
 })
 export class AuthService {
-  refreshToken(refreshToken: string) {
-    throw new Error('Method not implemented.');
-  }
+
   constructor(private http: HttpClient) {}
 
   changePassword(changePassword: ChangePassword): Observable<Response<any>> {
@@ -44,4 +42,12 @@ export class AuthService {
       { email }
     );
   }
+
+  refreshToken(refreshToken: string): Observable<Response<any>> {
+    return this.http.post<Response<any>>(
+      `${enviroment.url}/auth/refresh`,
+      { refreshToken }
+    );
+  }
+
 }

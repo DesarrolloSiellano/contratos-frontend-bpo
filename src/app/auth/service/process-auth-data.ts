@@ -7,6 +7,7 @@ import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ProcessAuthData {
   constructor(private confirmService: ConfirmService) {}
 
