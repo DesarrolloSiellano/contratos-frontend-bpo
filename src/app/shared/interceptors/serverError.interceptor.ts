@@ -11,7 +11,8 @@ export const serverErrorInterceptor: HttpInterceptorFn = (req, next) => {
       if (error.status === 500) {
         console.error('⚠️ El servidor devolvió 500 - internal server error');
 
-        localStorage.removeItem('token');
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refreshToken');
         router.navigate(['/exception/500']);
       }
 

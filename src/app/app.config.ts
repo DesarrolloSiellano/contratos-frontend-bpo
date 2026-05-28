@@ -5,7 +5,6 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
-import { unauthorizedInterceptor } from './shared/interceptors/unauthorized.interceptor';
 import { serverErrorInterceptor } from './shared/interceptors/serverError.interceptor';
 import { ES } from './shared/helpers/locale';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -19,7 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideHttpClient(
-      withInterceptors([unauthorizedInterceptor, serverErrorInterceptor])
+      withInterceptors([ serverErrorInterceptor])
     ),
     providePrimeNG({
       theme: {

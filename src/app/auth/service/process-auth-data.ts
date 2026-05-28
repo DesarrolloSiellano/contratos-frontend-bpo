@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../../shared/interface/jwt-payload.interface';
-import { Router } from '@angular/router';
-import { Environment } from '../../../environment/environment'; 
+import { ENVIROMENT } from '../../../enviroment/enviroment';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 
 @Injectable({
@@ -11,24 +10,26 @@ import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 export class ProcessAuthData {
   constructor(private confirmService: ConfirmService) {}
 
-  proccesAuthData(token: string) {
+  proccesAuthData(token: string, refreshToken?: string) {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
       const validatedModuleExists = decoded.modules.some(
-        (mod) => mod.name ===   Environment.storageKey
+        (mod) => mod.name === ENVIROMENT.storageKey,
       );
 
       if (!validatedModuleExists) {
         this.confirmService.showMessage(
           'error',
           `No tienes permisos para acceder a esta módulo`,
-          'Contacta al administrador del sistema'
+          'Contacta al administrador del sistema',
         );
         return;
       }
-      
 
       localStorage.setItem('access_token', token);
+      if (refreshToken) {
+        localStorage.setItem('refreshToken', refreshToken);
+      }
       localStorage.setItem('date_joined', decoded.date_joined);
       localStorage.setItem('exp', String(decoded.exp));
       localStorage.setItem('company', String(decoded.company));
@@ -50,6 +51,5 @@ export class ProcessAuthData {
     modules.forEach((mod) => {
       localStorage.setItem(mod.name, JSON.stringify(mod));
     });
-    
   }
 }

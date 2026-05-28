@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
@@ -6,38 +6,53 @@ import {
   Router,
 } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { Environment } from '../../environment/environment';  
+import { ENVIROMENT } from '../../enviroment/enviroment';
 import { ProcessAuthData } from './service/process-auth-data';
+import { LoadingService } from '../shared/services/loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router, private processAuthData: ProcessAuthData,) {}
+  private router = inject(Router);
+  private processAuthData = inject(ProcessAuthData);
+  private loadingService = inject(LoadingService);
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
+    state: RouterStateSnapshot,
   ): boolean {
-    // Revisar si en la URL actual hay access_token como query param
+    // Revisar si en la URL actual hay access_token y refresh_token como query params
     const accessTokenFromUrl = route.queryParamMap.get('access_token');
+    const refreshTokenFromUrl = route.queryParamMap.get('refresh_token');
 
     if (accessTokenFromUrl) {
-      this.processAuthData.proccesAuthData(accessTokenFromUrl);
+      this.loadingService.show();
+      this.processAuthData.proccesAuthData(accessTokenFromUrl, refreshTokenFromUrl ?? undefined);
+      
       const baseUrl = state.url.split('?')[0];
-      this.router.navigateByUrl(baseUrl);
+      
+      // Delay de 800ms para una transición visual suave
+      setTimeout(() => {
+        this.router.navigateByUrl(baseUrl).then(() => {
+          this.loadingService.hide();
+        }).catch(() => {
+          this.loadingService.hide();
+        });
+      }, 800);
+
       return true;
     }
 
     const token = localStorage.getItem('access_token');
 
     if (!token) {
-      this.redirectToLogin(Environment.redirectUri + state.url);
+      this.redirectToLogin(ENVIROMENT.redirectUri + state.url);
       return false;
     }
 
     if (!this.isTokenValid(token)) {
-      this.redirectToLogin(Environment.redirectUri + state.url);
+      this.redirectToLogin(ENVIROMENT.redirectUri + state.url);
       return false;
     }
 
@@ -46,8 +61,8 @@ export class AuthGuard implements CanActivate {
 
   private redirectToLogin(redirectUrl: string) {
     setTimeout(() => {
-      const loginUrl = `${Environment.authUrl}?redirect_uri=${encodeURIComponent(
-        redirectUrl
+      const loginUrl = `${ENVIROMENT.authUrl}?redirect_uri=${encodeURIComponent(
+        redirectUrl,
       )}`;
       window.location.href = loginUrl;
     }, 500);
