@@ -47,8 +47,6 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
   }
+  
+} 
 
-  openDialogPrueba() {
-    this.isDisplayForm = true;
-  }
-}

@@ -3,12 +3,9 @@
 <app-list-template [title]="'Lista de Tareas'" [showTitle]="true" [toAdd]="toAdd" [options]="true" [cols]="cols"
   [data]="data" [lazy]="true" [totalRecords]="totalRecords" [loading]="false" [filtersGlobal]="filtersGlobal"
   (loadLazy)="load($any($event))" (dateQuery)="queryDate($event)" (update)="update($event)" (delete)="delete($event)"
-  (exportPage)="exportAsXLSX()" (reload)="rechargeTable()" (onRowSelectionChange)="onSelectionChange($any($event))">
+  (exportPage)="exportAsXLSX()" (reload)="rechargeTable()" (onRowSelectionChange)="onSelectionChange($any($event))"(create)="create()">
   >
 </app-list-template>
-
-<p-button label="Open Dialog" [text]="true" severity="secondary" (click)="openDialogPrueba()" />
-
 
 
 <p-dialog [(visible)]="isDisplayForm" [style]="{width: '70vw'}" [header]="titleForm" [draggable]="false"
@@ -17,7 +14,7 @@
     @if (isFormVisible) {
 
      <app-form-template [width]="'70rem'" [title]="titleForm" [isVisible]="isFormVisible" [isEdit]="isEditForm"
-    [initialData]="initialData" [form]="formContract">
+    [initialData]="initialData" [form]="formTask">
       </app-form-template>
 
   }
@@ -27,6 +24,5 @@
     <p-button label="Save" [outlined]="true" severity="primary" (click)="save()" />
   </ng-template>
 </p-dialog>
-
 
 
