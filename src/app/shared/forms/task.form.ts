@@ -88,6 +88,8 @@ export const TASK_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
+    optionName: 'label',
+    optionValue: 'value',
     options: [
       {
         label: 'Activo',
@@ -102,7 +104,7 @@ export const TASK_FORM = [
   {
     name: 'subsecretarias',
     label: 'Subsecretarias',
-    type: 'text',
+    type: 'select',
     show: true,
     required: true,
     value: '',
@@ -113,6 +115,18 @@ export const TASK_FORM = [
     placeholder: '',
     pKeyFilter: '',
     pattern: '',
+    optionName: 'label',
+    optionValue: 'value',
+    options: [
+      { label: 'Subsecretaría de Gestión Territorial', value: 'gestionTerritorial' },
+      { label: 'Subsecretaría de Gestión Institucional', value: 'gestionInstitucional' },
+      { label: 'Subsecretaría de Gestión Social', value: 'gestionSocial' }, 
+      { label: 'Subsecretaría de Gestión Administrativa', value: 'gestionAdministrativa' },
+      { label: 'Subsecretaría de Gestión Financiera', value: 'gestionFinanciera' },
+      { label: 'Subsecretaría de Gestión Jurídica', value: 'gestionJuridica' },
+      { label: 'Subsecretaría de Gestión Tecnológica', value: 'gestionTecnologica' },
+      { label: 'Subsecretaría de Gestión de Talento Humano', value: 'gestionTalentoHumano' },
+    ],
   },
   {
     name: 'dimensiones',
@@ -147,7 +161,7 @@ export const TASK_FORM = [
   {
     name: 'fechaInicio',
     label: 'Fecha De Inicio',
-    type: 'text',
+    type: 'date',
     show: true,
     required: true,
     value: '',
@@ -162,7 +176,7 @@ export const TASK_FORM = [
   {
     name: 'fechaFinalizacion',
     label: 'Fecha De Finalizacion',
-    type: 'text',
+    type: 'date',
     show: true,
     required: true,
     value: '',
