@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RoutesModuleConfig } from '../../shared/interface/module-config.interface';
 import { GetConfigAppService } from '../../shared/services/get-config.service';
-import { Environment } from '../../../environment/environment';    
+import { enviroment } from '../../../enviroment/enviroment';    
 
 
 @Component({
@@ -15,7 +15,7 @@ import { Environment } from '../../../environment/environment';
 })
 export class SidebarComponent implements OnInit {
   routes: RoutesModuleConfig[] = [];
-  title = Environment.title;
+  title = enviroment.title;
 
   constructor(private getConfigApp: GetConfigAppService) {}
 

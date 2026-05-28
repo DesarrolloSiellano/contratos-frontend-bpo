@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../../shared/interface/jwt-payload.interface';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { enviroment } from '../../../enviroment/enviroment';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 
 @Injectable({
@@ -10,11 +10,12 @@ import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 export class ProcessAuthData {
   constructor(private confirmService: ConfirmService) {}
 
+
   proccesAuthData(token: string, refreshToken?: string) {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
       const validatedModuleExists = decoded.modules.some(
-        (mod) => mod.name === ENVIROMENT.storageKey,
+        (mod) => mod.name === enviroment.storageKey,
       );
 
       if (!validatedModuleExists) {

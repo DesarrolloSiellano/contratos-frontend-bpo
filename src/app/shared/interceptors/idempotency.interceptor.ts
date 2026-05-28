@@ -6,7 +6,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'uuid';  
 
 // Mapa para almacenar las llaves de idempotencia activas indexadas por Hash
 const activeKeys = new Map<string, string>();

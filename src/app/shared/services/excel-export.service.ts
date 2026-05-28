@@ -12,6 +12,9 @@ const EXCEL_EXTENSION = '.xlsx';
   providedIn: 'root',
 })
 export class ExcelExportService {
+  export(data: any, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor() {}
 
   public exportAsExcelFile(json: any[], excelFileName: string): void {

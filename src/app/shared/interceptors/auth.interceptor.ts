@@ -1,4 +1,4 @@
-import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
+import { HttpEvent, HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Router } from '@angular/router';
 import {
@@ -8,18 +8,19 @@ import {
   BehaviorSubject,
   filter,
   take,
+  Observable,
 } from 'rxjs';
 import { AuthService } from '../../auth/service/auth';
 import { ProcessAuthData } from '../../auth/service/process-auth-data';
 import { ConfirmService } from '../services/confirm-dialog.service';
-import { ENVIROMENT } from '../../../enviroment/enviroment';
+import { enviroment } from '../../../enviroment/enviroment';
 
 let isRefreshing = false;
 const refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
   string | null
 >(null);
 
-export const authInterceptor: HttpInterceptorFn = (req, next) => {
+export const authInterceptor = ((req: any, next: any): Observable<HttpEvent<any>> => {
   const router = inject(Router);
   const authService = inject(AuthService);
   const processAuthData = inject(ProcessAuthData);
@@ -70,13 +71,14 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
           isRefreshing = true;
           refreshTokenSubject.next(null);
 
-          return authService.refreshToken(refreshToken).pipe(
-            switchMap((res) => {
+          const refreshToken$ = authService.refreshToken(refreshToken) as any;
+          return refreshToken$.pipe(
+            switchMap((res: any) => {
               isRefreshing = false;
               console.info('✅ Token refrescado exitosamente.');
               
-              const newToken = res.accessToken || res.access_token;
-              const newRefreshToken = res.refreshToken || res.refresh_token || refreshToken;
+              const newToken = res?.accessToken || res?.access_token;
+              const newRefreshToken = res?.refreshToken || res?.refresh_token || refreshToken;
 
               processAuthData.proccesAuthData(newToken, newRefreshToken);
               refreshTokenSubject.next(newToken);
@@ -121,15 +123,15 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       return throwError(() => error);
     }),
   );
-};
+}) as unknown as HttpInterceptorFn;
 
 function clearSessionAndRedirect(router: Router) {
   localStorage.clear();
   sessionStorage.clear();
   
   // Construir la URL de retorno apuntando a la ruta actual en este módulo
-  const redirectUrl = `${ENVIROMENT.redirectUri.replace(/\/$/, '')}${router.url}`;
-  const loginUrl = `${ENVIROMENT.authUrl}?redirect_uri=${encodeURIComponent(redirectUrl)}`;
+  const redirectUrl = `${enviroment.redirectUri.replace(/\/$/, '')}${router.url}`;
+  const loginUrl = `${enviroment.authUrl}?redirect_uri=${encodeURIComponent(redirectUrl)}`;
   
   setTimeout(() => {
     window.location.href = loginUrl;

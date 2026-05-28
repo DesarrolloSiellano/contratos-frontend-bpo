@@ -1,4 +1,5 @@
-export const Environment = {
+export const enviroment = {
+  
   production: true,
   //redirectUri: 'https://campaign.bponet.com.co',
   redirectUri: 'http://localhost:4201',
