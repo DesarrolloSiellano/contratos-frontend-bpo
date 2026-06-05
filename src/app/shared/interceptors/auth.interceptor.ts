@@ -13,7 +13,7 @@ import {
 import { AuthService } from '../../auth/service/auth';
 import { ProcessAuthData } from '../../auth/service/process-auth-data';
 import { ConfirmService } from '../services/confirm-dialog.service';
-import { enviroment } from '../../../enviroment/enviroment';
+import { environment } from '../../../environment/environment';
 
 let isRefreshing = false;
 const refreshTokenSubject: BehaviorSubject<string | null> = new BehaviorSubject<
@@ -130,8 +130,8 @@ function clearSessionAndRedirect(router: Router) {
   sessionStorage.clear();
   
   // Construir la URL de retorno apuntando a la ruta actual en este módulo
-  const redirectUrl = `${enviroment.redirectUri.replace(/\/$/, '')}${router.url}`;
-  const loginUrl = `${enviroment.authUrl}?redirect_uri=${encodeURIComponent(redirectUrl)}`;
+  const redirectUrl = `${environment.redirectUri.replace(/\/$/, '')}${router.url}`;
+  const loginUrl = `${environment.authUrl}?redirect_uri=${encodeURIComponent(redirectUrl)}`;
   
   setTimeout(() => {
     window.location.href = loginUrl;

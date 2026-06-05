@@ -1,27 +1,25 @@
 import { AfterViewInit, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { BaseCrud } from '../../shared/helpers/base-crud';
 import { ExcelExportService } from '../../shared/services/excel-export.service';
-import { ContractsService } from './services/contracts.service'; 
+import { ContractService } from './services/contract.service'; 
 import { DataLoaderService } from '../../shared/services/data-load.service';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
-import { Contract } from './interfaces/contract.interface';
+import { Contract } from './interfaces/contract.interface'; 
 import { ListTemplateComponent } from '../../shared/components/list-template/list-template.component';
-import { CONTRACTS_FORM } from '../../shared/forms/contracts.form';
+import { CONTRACT_FORM } from '../../shared/forms/contract.form';
 import { Button } from "primeng/button";
 import { Dialog } from "primeng/dialog";
 import { FormTemplateComponent } from "../../shared/components/form-template/form-template.component";
 
 @Component({
-  selector: 'app-contracts',
+  selector: 'app-contract',
   standalone: true,
   imports: [ListTemplateComponent, Button, Dialog, FormTemplateComponent],
-  templateUrl: './contracts.component.html',
-  styleUrl: './contracts.component.scss',
+  templateUrl: './contract.component.html',
+  styleUrl: './contract.component.scss',
 })
-export class ContractsComponent extends BaseCrud<Contract> implements OnInit,AfterViewInit {
-openDialogPrueba() {
-throw new Error('Method not implemented.');
-}
+export class ContractsComponent extends BaseCrud<Contract> implements OnInit, AfterViewInit {
+  
   cols = [
     { field: 'nom', header: 'Nombres' },
     { field: 'ape', header: 'Apellidos' },
@@ -32,12 +30,10 @@ throw new Error('Method not implemented.');
     { field: 'direccion', header: 'Direccion' },
   ];
 
-  formContract = CONTRACTS_FORM;
-  override isFormVisible = true;
-  
+  formContract = CONTRACT_FORM;
 
   constructor(
-    protected override service: ContractsService,
+    protected override service: ContractService, 
     protected override cdr: ChangeDetectorRef,
     protected override dataLoader: DataLoaderService,
     protected override excelexport: ExcelExportService,
@@ -45,10 +41,16 @@ throw new Error('Method not implemented.');
   ) {
     super(service, cdr, dataLoader, excelexport, confirmService);
   }
+
   ngOnInit(): void {}
+
   ngAfterViewInit(): void {
     this.cdr.detectChanges();
   }
-}
 
+  override closeDialog(): void {
+    this.isDisplayForm = false;
+    this.isFormVisible = false;
+  }
+}
 

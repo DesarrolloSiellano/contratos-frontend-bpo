@@ -6,7 +6,7 @@ import {
   Router,
 } from '@angular/router';
 import { jwtDecode } from 'jwt-decode';
-import { enviroment } from '../../enviroment/enviroment';
+import { environment } from '../../environment/environment';
 import { ProcessAuthData } from './service/process-auth-data';
 import { LoadingService } from '../shared/services/loading.service';
 
@@ -47,12 +47,12 @@ export class AuthGuard implements CanActivate {
     const token = localStorage.getItem('access_token');
 
     if (!token) {
-      this.redirectToLogin(enviroment.redirectUri + state.url);
+      this.redirectToLogin(environment.redirectUri + state.url);
       return false;
     }
 
     if (!this.isTokenValid(token)) {
-      this.redirectToLogin(enviroment.redirectUri + state.url);
+      this.redirectToLogin(environment.redirectUri + state.url);
       return false;
     }
 
@@ -61,7 +61,7 @@ export class AuthGuard implements CanActivate {
 
   private redirectToLogin(redirectUrl: string) {
     setTimeout(() => {
-      const loginUrl = `${enviroment.authUrl}?redirect_uri=${encodeURIComponent(
+      const loginUrl = `${environment.authUrl}?redirect_uri=${encodeURIComponent(
         redirectUrl,
       )}`;
       window.location.href = loginUrl;

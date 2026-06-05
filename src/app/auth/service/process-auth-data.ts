@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../../shared/interface/jwt-payload.interface';
-import { enviroment } from '../../../enviroment/enviroment';
+import { environment } from '../../../environment/environment';
 import { ConfirmService } from '../../shared/services/confirm-dialog.service';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class ProcessAuthData {
     try {
       const decoded = jwtDecode<JwtPayload>(token);
       const validatedModuleExists = decoded.modules.some(
-        (mod) => mod.name === enviroment.storageKey,
+        (mod) => mod.name === environment.storageKey,
       );
 
       if (!validatedModuleExists) {

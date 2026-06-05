@@ -28,7 +28,7 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { FormsModule } from '@angular/forms';
 import { LoadingService } from '../../shared/services/loading.service';
 import Swal from 'sweetalert2';
-import { enviroment } from '../../../enviroment/enviroment';
+import { environment } from '../../../environment/environment';
 
 
 @Component({
@@ -63,7 +63,7 @@ export class NavbarComponent implements OnInit, AfterViewInit {
   moduleConfig: ModuleConfig = {} as ModuleConfig;
   username: string = '';
   private scrollListener!: () => void;
-  title = enviroment.title;
+  title = environment.title;
   panelMessage = 'Tu tienes 10 notificaciones';
   panelFooterMessage = 'Ver todas';
 
