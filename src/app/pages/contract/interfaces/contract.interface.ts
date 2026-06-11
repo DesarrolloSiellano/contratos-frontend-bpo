@@ -4,6 +4,7 @@ export interface Contract {
     id: string;
     idSupervisor?: string;
     documentoContratista?: string;
+    numeroDocContratista: string; 
     ano?: string;
     numeroContrato: string;
     nombreReferente?: string;

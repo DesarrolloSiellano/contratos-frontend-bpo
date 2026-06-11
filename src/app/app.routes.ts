@@ -35,10 +35,10 @@ export const routes: Routes = [
             },
 
             {
-                path: 'contracts',
+                path: 'contract',
                 loadComponent: () =>
-                    import('./pages/contracts/contracts.component').then(
-                        (m) => m.ContractsComponent
+                    import('./pages/contract/contract.component').then(
+                        (m) => m.ContractComponent
                     ),
             },
             {

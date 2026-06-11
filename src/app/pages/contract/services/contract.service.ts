@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BaseService } from '../../../shared/services/base.service';
-import { Contractor } from '../interfaces/contractor.interface';
 import { Response } from '../../../shared/interface/response.interface';
+import { Contract } from '../interfaces/contract.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
-export class ContractorService extends BaseService<Contractor, Response<Contractor>> {
-    get(arg0: any) {
+export class ContractService extends BaseService<Contract, Response<Contract>> {
+ get(arg0: any) {
       throw new Error('Method not implemented.');
     }
 
-    constructor(http: HttpClient) {
-        super(http, 'contractor');
-    }
+  constructor(http: HttpClient) {
+    super(http, 'contract');
+  }
 
 }

@@ -1,4 +1,4 @@
-export const CONTRACTS_FORM = [
+export const CONTRACT_FORM = [
   {
     name: 'documentoContratista',
     label: 'Documento De Contratista',
@@ -23,21 +23,23 @@ export const CONTRACTS_FORM = [
     { label: 'Registro Civil', value: 'rc' },
   ],
   },
-  {
-   name: 'numeroDocContratista',
-    label: 'Número de Documento de Contratista',
-    type: 'text',
+    {
+    name: 'numeroDocContratista',
+    label: 'Seleccione el Contratista',
+    type: 'select', // 🚀 Cambiado a select para soportar la lista reactiva
     show: true,
     required: true,
     value: '',
-    maxLength: '20',
-    minLength: '6',
+    maxLength: '100',
+    minLength: '1',
     weight: 2.5,
     disabled: false,
-    placeholder: 'Ej: 1234567890 (CC) o AB123456 (Pasaporte)',
+    placeholder: 'Escriba para buscar contratista...',
     pKeyFilter: '',
-    pattern: '^[a-zA-Z0-9]{6,20}$',
-
+    pattern: '', // 🛠️ Vacío para evitar bloqueos de formato de texto
+    optionName: 'label',
+    optionValue: 'value',
+    options: []
   },
   {
     name: 'anio',
@@ -65,7 +67,7 @@ export const CONTRACTS_FORM = [
     minLength: '1',       
     weight: 4,
     disabled: false,
-    placeholder: '',
+    placeholder: 'Ej: CONTRATO-2024-001',
     pKeyFilter: '',
     pattern: '',
   },
@@ -93,8 +95,8 @@ export const CONTRACTS_FORM = [
     value: '',
     maxLength: '150',
     minLength: '1',
-    weigth: 6,
-    disable: false,
+    weight: 6,
+    disabled: false,
     placeholder: '',
     pKeyFilter: '',
     pattern: '',

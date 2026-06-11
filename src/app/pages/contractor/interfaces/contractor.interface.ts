@@ -1,4 +1,4 @@
-import { Contract } from '../../contracts/interfaces/contract.interface';
+import { Contract } from '../../contract/interfaces/contract.interface';
 
 export interface Contractor {
     id: number;
