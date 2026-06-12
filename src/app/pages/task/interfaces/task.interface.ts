@@ -1,7 +1,7 @@
 export interface Task {
 
     //tslint:disable-next-line: variable-name
-   contractsid?: string;
+   contractid?: string;
    nombreReferente?: string;
    responsableSupervisor?: string;
    tarea?: string;

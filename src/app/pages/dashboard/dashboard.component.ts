@@ -10,13 +10,13 @@ import { Component } from '@angular/core';
 })
 export class DashboardComponent {
   stats = {
-    activeContracts: 124,
+    activeContract: 124,
     contractors: 58,
     pendingPayments: 17,
-    expiringContracts: 9
+    expiringContract: 9
   };
 
-  contracts = [
+  contract = [
     {
       code: 'CT-1001',
       contractor: 'Juan Pérez',

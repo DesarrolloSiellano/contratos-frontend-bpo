@@ -10,8 +10,6 @@ import { DatePickerModule } from 'primeng/datepicker';
 import { ButtonModule } from 'primeng/button';
 import { TooltipModule } from 'primeng/tooltip';
 
-
-
 @Component({
   selector: 'app-list-template',
   standalone: true,
@@ -30,10 +28,9 @@ import { TooltipModule } from 'primeng/tooltip';
   styleUrl: './list-template.component.scss'
 })
 export class ListTemplateComponent {
-
   @Input() periodoInicio: any;
   @Input() rowsNumber: number = 100;
-  @Input() title: String = '';
+  @Input() title: string = '';
   @Input() showTitle: boolean = false;
   @Input() periodoFin: any;
   @Input() options: boolean = true;
@@ -47,14 +44,11 @@ export class ListTemplateComponent {
   @Input() loading: boolean = false;
   @Input() filtersGlobal: boolean = true;
   @Input() items: MenuItem[] = [];
-  @Input() updateItem!: (rowData: any) => void; // Recibe la función update
+  @Input() updateItem!: (rowData: any) => void;
   @Input() deleteItem!: (rowData: any) => void;
 
   selected: any;
   inputVisible: boolean = false;
-
-
-
 
   @Output() selectionChange = new EventEmitter<any>();
   @Output() onRowSelectionChange = new EventEmitter<any>();
@@ -69,14 +63,12 @@ export class ListTemplateComponent {
   @Output() exportFiltered = new EventEmitter<Table>();
   @Output() reload = new EventEmitter<void>();
 
-
-
   loadDataLazy(event: TableLazyLoadEvent) {
     this.loadLazy.emit(event);
   }
 
   queryDate() {
-    this.dateQuery.emit({initial: this.periodoInicio, final: this.periodoFin});
+    this.dateQuery.emit({ initial: this.periodoInicio, final: this.periodoFin });
   }
 
   onCreate() {
@@ -84,7 +76,7 @@ export class ListTemplateComponent {
   }
 
   onContextMenuSelect() {
-    this.selectionChange.emit(this.selected)
+    this.selectionChange.emit(this.selected);
   }
 
   onRowSelect() {
@@ -122,5 +114,5 @@ export class ListTemplateComponent {
   toggleInput() {
     this.inputVisible = !this.inputVisible;
   }
-
 }
+

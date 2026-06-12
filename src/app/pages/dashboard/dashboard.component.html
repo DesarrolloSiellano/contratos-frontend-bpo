@@ -9,7 +9,7 @@
   <section class="dashboard-grid">
     <article class="dashboard-card">
       <h2>Contratos activos</h2>
-      <strong>{{ stats.activeContracts }}</strong>
+      <strong>{{ stats.activeContract }}</strong>
       <p>Contratos actualmente vigentes</p>
     </article>
 
@@ -27,7 +27,7 @@
 
     <article class="dashboard-card">
       <h2>Por vencer</h2>
-      <strong>{{ stats.expiringContracts }}</strong>
+      <strong>{{ stats.expiringContract }}</strong>
       <p>Contratos próximos a vencer</p>
     </article>
   </section>
@@ -47,7 +47,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let contract of contracts">
+          <tr *ngFor="let contract of contract">
             <td>{{ contract.code }}</td>
             <td>{{ contract.contractor }}</td>
             <td>{{ contract.status }}</td>

@@ -1,22 +1,48 @@
 <p>"Contratistas cargados correctamente"</p>
 
-<app-list-template [title]="'Lista de Contratistas'" [showTitle]="true" [toAdd]="toAdd" [options]="true" [cols]="cols"
-  [data]="data" [lazy]="true" [totalRecords]="totalRecords" [loading]="false" [filtersGlobal]="filtersGlobal"
-  (loadLazy)="load($any($event))" (dateQuery)="queryDate($event)" (update)="update($event)" (delete)="delete($event)"
-  (exportPage)="exportAsXLSX()" (reload)="rechargeTable()" (onRowSelectionChange)="onSelectionChange($any($event))" (create)="create()">
-  
+<app-list-template
+  [title]="'Lista de Contratistas'"
+  [showTitle]="true"
+  [toAdd]="toAdd"
+  [options]="true"
+  [cols]="cols"
+  [data]="data"
+  [lazy]="true"
+  [totalRecords]="totalRecords"
+  [loading]="false"
+  [filtersGlobal]="filtersGlobal"
+  (loadLazy)="load($any($event))"
+  (dateQuery)="queryDate($event)"
+  (update)="update($event)"
+  (delete)="delete($event)"
+  (exportPage)="exportAsXLSX()"
+  (reload)="rechargeTable()"
+  (onRowSelectionChange)="onSelectionChange($any($event))"
+  (create)="create()"
+>
 </app-list-template>
 
-
-<p-dialog [(visible)]="isDisplayForm" [style]="{width: '70vw'}" [header]="titleForm" [draggable]="false"
-  [resizable]="false" [closable]="false" [modal]="true" [baseZIndex]="10000">
+<p-dialog
+  [(visible)]="isDisplayForm"
+  [style]="{ width: '70vw' }"
+  [header]="titleForm"
+  [draggable]="false"
+  [resizable]="false"
+  [closable]="false"
+  [modal]="true"
+  [baseZIndex]="10000"
+>
+  @if (isFormVisible) {
+    <app-form-template
   
-    @if (isFormVisible) {
-
-     <app-form-template [width]="'70rem'" [title]="titleForm" [isVisible]="isFormVisible" [isEdit]="isEditForm"
-    [initialData]="initialData" [form]="formContractor">
-      </app-form-template>
-
+      [width]="'70rem'"
+      [title]="titleForm"
+      [isVisible]="isFormVisible"
+      [isEdit]="isEditForm"
+      [initialData]="initialData"
+      [form]="formContractor"
+    >
+    </app-form-template>
   }
 
   <ng-template #footer>
@@ -24,4 +50,3 @@
     <p-button label="Save" [outlined]="true" severity="primary" (click)="save()" />
   </ng-template>
 </p-dialog>
-

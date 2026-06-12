@@ -1,15 +1,13 @@
-  import { HttpClient, HttpHeaders } from '@angular/common/http';
-  import { Observable } from 'rxjs';
-  import { enviroment } from '../../../enviroment/enviroment';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { enviroment } from '../../../enviroment/enviroment';
 
 export abstract class BaseService<TModel, TResponse> {
 
-
   constructor(
     protected http: HttpClient,
-    protected baseUrl: string  // URL base para las peticiones
+    protected baseUrl: string  // URL base para las peticiones (ej: 'contract')
   ) {
- 
   }
 
   getHeaders(): HttpHeaders {
@@ -20,15 +18,17 @@ export abstract class BaseService<TModel, TResponse> {
   }
 
   findAll(): Observable<TResponse> {
-    return this.http.get<TResponse>(`${enviroment.url}${this.baseUrl}`);
+    // ← CORRECCIÓN: agregar / entre url y baseUrl
+    return this.http.get<TResponse>(`${enviroment.url}/${this.baseUrl}`);
   }
 
   findByDocument(document: string): Observable<TResponse> {
-    return this.http.get<TResponse>(`${enviroment.url}}/${this.baseUrl}/${document}`, { headers: this.getHeaders() });
+    // ← CORRECCIÓN: quitar } extra
+    return this.http.get<TResponse>(`${enviroment.url}/${this.baseUrl}/${document}`, { headers: this.getHeaders() });
   }
 
   findById(id: string): Observable<TResponse> {
-    return this.http.get<TResponse>(`${enviroment.url}/${this.baseUrl}/${id}` , { headers: this.getHeaders() });
+    return this.http.get<TResponse>(`${enviroment.url}/${this.baseUrl}/${id}`, { headers: this.getHeaders() });
   }
 
   findByPage(

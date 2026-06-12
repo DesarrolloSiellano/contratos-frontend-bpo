@@ -1,0 +1,9 @@
+:host ::ng-deep .contract-dialog {
+  width: 95vw !important;
+  max-width: 1200px !important;
+}
+
+:host ::ng-deep .contract-dialog .p-dialog-content {
+  overflow: auto;
+  max-height: 80vh;
+}

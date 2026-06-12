@@ -17,7 +17,6 @@ export const routes: Routes = [
                 (m) => m.TemplateComponent
             ),
         canActivate: [AuthGuard],
-
         children: [
             {
                 path: 'dashboard',
@@ -33,9 +32,8 @@ export const routes: Routes = [
                         (m) => m.ContractorComponent
                     ),
             },
-
             {
-                path: 'contract',
+                path: 'contracts',  // ← 'contracts' (plural, para coincidir con el menú)
                 loadComponent: () =>
                     import('./pages/contract/contract.component').then(
                         (m) => m.ContractComponent
@@ -51,3 +49,4 @@ export const routes: Routes = [
         ]
     }
 ];
+
