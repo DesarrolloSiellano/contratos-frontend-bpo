@@ -5,15 +5,11 @@ import { Contractor } from '../interfaces/contractor.interface';
 import { Response } from '../../../shared/interface/response.interface';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContractorService extends BaseService<Contractor, Response<Contractor>> {
-    get(arg0: any) {
-      throw new Error('Method not implemented.');
-    }
-
-    constructor(http: HttpClient) {
-        super(http, 'contractor');
-    }
-
+  constructor(http: HttpClient) {
+    super(http, 'contractor');
+  }
 }
+

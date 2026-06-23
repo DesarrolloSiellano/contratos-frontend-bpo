@@ -86,45 +86,39 @@ export class ContractComponent extends BaseCrud<Contract> implements OnInit, Aft
   }
 
   private cargarAutoselectContratistas(): void {
-    // ← CORRECCIÓN: verificar si el servicio tiene findByPage
-    console.log('contractorService:', this.contractorService);
-    console.log('findByPage existe?', (this.contractorService as any).findByPage);
-
-    const servicioDinamico = this.contractorService as any;
-    if (!servicioDinamico.findByPage) {
-      console.error('findByPage no existe en ContractorService');
-      return;
-    }
-
-    console.log('Llamando a findByPage de contratistas...');
-    servicioDinamico.findByPage(0, 100, '', '{}').subscribe({
+    this.contractorService.findByPage(0, 100, '', '{}').subscribe({
       next: (res: any) => {
-        console.log('Respuesta de contratistas:', res);
-        const lista = res?.data || res?.results || res?.docs || (Array.isArray(res) ? res : []);
-        console.log('Lista de contratistas:', lista);
-        this.listaContratistas = lista.filter((c: Contractor) => c.estado === 'activo');
-        console.log('Contratistas activos:', this.listaContratistas);
-        
+        let lista: Contractor[] = [];
+
+        if (res?.data && Array.isArray(res.data)) {
+          lista = res.data;
+        } else if (res?.results && Array.isArray(res.results)) {
+          lista = res.results;
+        } else if (res?.docs && Array.isArray(res.docs)) {
+          lista = res.docs;
+        } else if (Array.isArray(res)) {
+          lista = res;
+        }
+
+        this.listaContratistas = lista;
+
         const campo = this.formContract.find((c: any) => c.name === 'numeroDocContratista');
-        console.log('Campo contratista:', campo);
-        
-        if (campo && this.listaContratistas.length > 0) {
+        if (campo) {
           campo.type = 'select';
           campo.optionName = 'label';
           campo.optionValue = 'value';
-          campo.options = this.listaContratistas.map((c: Contractor) => ({
+          campo.options = lista.map((c: Contractor) => ({
             label: `${c.nom || ''} ${c.ape || ''} - C.C. ${c.numeroDoc || 'Sin Cédula'}`,
             value: String(c.id),
           }));
-          console.log('Options cargadas:', campo.options);
           this.cdr.detectChanges();
-        } else if (campo) {
-          campo.options = [];
-          console.warn('No hay contratistas activos');
         }
       },
       error: (err: any) => {
         console.error('Error cargando contratistas:', err);
+        const campo = this.formContract.find((c: any) => c.name === 'numeroDocContratista');
+        if (campo) campo.options = [];
+        this.cdr.detectChanges();
       },
     });
   }
@@ -151,7 +145,7 @@ export class ContractComponent extends BaseCrud<Contract> implements OnInit, Aft
   private cargarDatosEnFormulario(event: any): void {
     this.formContract.forEach((campo: any) => {
       const valor = event[campo.name];
-      if (valor) {
+      if (valor !== undefined && valor !== null) {
         campo.value = valor;
       }
     });
@@ -172,12 +166,20 @@ export class ContractComponent extends BaseCrud<Contract> implements OnInit, Aft
       return;
     }
 
-    if (!datosForm.numeroDocContratista) {
+    if (
+      datosForm.numeroDocContratista === null ||
+      datosForm.numeroDocContratista === undefined ||
+      datosForm.numeroDocContratista === ''
+    ) {
       this.confirmService.showMessage('error', 'Validación', 'Debe seleccionar un contratista');
       return;
     }
 
-    if (!datosForm.idSupervisor) {
+    if (
+      datosForm.idSupervisor === null ||
+      datosForm.idSupervisor === undefined ||
+      datosForm.idSupervisor === ''
+    ) {
       this.confirmService.showMessage('error', 'Validación', 'Debe seleccionar un supervisor');
       return;
     }
@@ -217,8 +219,8 @@ export class ContractComponent extends BaseCrud<Contract> implements OnInit, Aft
       vigente: true,
       prorrogado: false,
       detenido: false,
-      porcentajeTotal: 0.00,
-      porcentajeRestante: 100.00,
+      porcentajeTotal: 0,
+      porcentajeRestante: 100,
     };
 
     if (this.isEditForm) {
@@ -227,6 +229,7 @@ export class ContractComponent extends BaseCrud<Contract> implements OnInit, Aft
         this.confirmService.showMessage('error', 'Error', 'No se encontró el ID del contrato');
         return;
       }
+
       this.service.update(idEditar, payload).subscribe({
         next: () => this.finalizarGuardadoExitoso(),
         error: (err: any) => {

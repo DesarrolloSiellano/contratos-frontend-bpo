@@ -5,12 +5,10 @@ import { Contract } from '../interfaces/contract.interface';
 import { Response } from '../../../shared/interface/response.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ContractService extends BaseService<Contract, Response<Contract>> {
   constructor(http: HttpClient) {
-    // ← CORRECCIÓN: usar 'contracts' (plural) como en tu backend
     super(http, 'contracts');
   }
 }
-

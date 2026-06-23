@@ -58,18 +58,12 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
       datosForm = this.formTemplateComponent.formGroup.value;
     }
 
-    // Validación de email
-    let emailLimpio = datosForm.email ? datosForm.email.toString().trim().toLowerCase() : '';
+    const emailLimpio = datosForm.email ? datosForm.email.toString().trim().toLowerCase() : '';
     if (!emailLimpio || !emailLimpio.includes('@')) {
-      this.confirmService.showMessage(
-        'error',
-        'Validación',
-        'El correo es inválido'
-      );
+      this.confirmService.showMessage('error', 'Validación', 'El correo es inválido');
       return;
     }
 
-    // Validación de número de documento
     if (!datosForm.numeroDoc || datosForm.numeroDoc.length < 5) {
       this.confirmService.showMessage(
         'error',
@@ -104,23 +98,24 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
         this.confirmService.showMessage('error', 'Error', 'No se encontró el ID del contratista');
         return;
       }
+
       this.service.update(idEditar, datosLimpiosBackend).subscribe({
         next: () => this.finalizarGuardadoExitoso(),
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error al actualizar contratista:', err);
           this.confirmService.showMessage('error', 'Error', 'No se pudo actualizar el contratista');
-        }
+        },
       });
     } else {
       this.service.create(datosLimpiosBackend).subscribe({
-        next: (respuesta) => {
+        next: (respuesta: any) => {
           console.log('Guardado con éxito:', respuesta);
           this.finalizarGuardadoExitoso();
         },
-        error: (err) => {
+        error: (err: any) => {
           console.error('Error al guardar contratista:', err);
           this.confirmService.showMessage('error', 'Error', err.error?.message || 'No se pudo guardar el contratista');
-        }
+        },
       });
     }
   }
@@ -132,4 +127,3 @@ export class ContractorComponent extends BaseCrud<Contractor> implements OnInit,
     this.cdr.detectChanges();
   };
 }
-
